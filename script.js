@@ -1,13 +1,9 @@
-console.log("Yo is this thing on");
-console.log(getComputerChoice());
-
 let playerScore = 0;
 let computerScore = 0;
 
 
 function getComputerChoice() {
     let choiceNum = Math.floor(Math.random() * 3);
-    console.log("choiceNum = " + choiceNum);
     let choiceStr;
     switch(choiceNum) {
         case 0:
@@ -30,7 +26,7 @@ function round(playerSelection, computerSelection) {
     if (playerSelection == computerSelection) {
         result = "tie";
     } else if ((playerSelection == "rock" && computerSelection == "scissors") ||
-        (playerSelection== "paper" && computerSelection == "rock") ||
+        (playerSelection == "paper" && computerSelection == "rock") ||
         (playerSelection == "scissors" && computerSelection == "paper")) {
             result = "You Win! " + playerSelection + " beats " + computerSelection;
             playerScore++;
@@ -46,17 +42,17 @@ function round(playerSelection, computerSelection) {
 function game() {
     let input;
 
-    while (playerScore <= 5 || computerScore <= 5) {
-        while (input != "rock" || input != "paper" || input != "scissors") {
-            input = prompt("Enter your choice").toLowerCase();
-        }
+    while (playerScore < 5 && computerScore < 5) {
+        input = prompt("Enter your choice").toString().toLowerCase();
         round(input, getComputerChoice());
+        console.log("Player Score: " + playerScore + "/5. Computer Score: " + computerScore + "/5")
     }
 
-    if(playerScore == 5) {
+    if(playerScore > computerScore) {
         console.log("Player Wins the Game!")
-    } else if (computerScore == 5) {
+    } else if (computerScore > playerScore) {
         console.log("Computer Wins the Game!")
     }
-
 }
+
+game();
