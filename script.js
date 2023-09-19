@@ -38,13 +38,25 @@ function round(playerSelection, computerSelection) {
 
         console.log("Player Chose " + playerSelection + ". Computer Chose " + computerSelection +". " + result);
         div.textContent = "Player Chose " + playerSelection + ". Computer Chose " + computerSelection +". " + result;
+
+        score.textContent = "Player Score: " + playerScore + "/5. Computer Score: " + computerScore + "/5";
+
+        if (playerScore == 5) {
+            win.textContent = "Player Wins!";
+            playerScore = 0;
+            computerScore = 0;
+        } else if (computerScore == 5) {
+            win.textContent = "Computer Wins!"
+            playerScore = 0;
+            computerScore = 0;
+        }
         return result;
 }
 
 function game() {
+    win.textContent = "";
     round(playerChoice, getComputerChoice());
-    console.log("Player Score: " + playerScore + "/5. Computer Score: " + computerScore + "/5");
-    score.textContent = "Player Score: " + playerScore + "/5. Computer Score: " + computerScore + "/5";    
+    console.log("Player Score: " + playerScore + "/5. Computer Score: " + computerScore + "/5"); 
 }
 
 const body = document.querySelector("body");
@@ -76,7 +88,9 @@ buttonContainer.appendChild(scissorButton);
 body.appendChild(buttonContainer);
 
 const div = document.createElement("div");
-div.textContent = "test";
 const score = document.createElement("div");
 body.appendChild(div);
 body.appendChild(score);
+
+const win = document.createElement("div");
+body.appendChild(win)
