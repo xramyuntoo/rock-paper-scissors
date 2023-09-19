@@ -1,5 +1,6 @@
 let playerScore = 0;
 let computerScore = 0;
+let playerChoice = "";
 
 
 function getComputerChoice() {
@@ -36,23 +37,46 @@ function round(playerSelection, computerSelection) {
         }
 
         console.log("Player Chose " + playerSelection + ". Computer Chose " + computerSelection +". " + result);
+        div.textContent = "Player Chose " + playerSelection + ". Computer Chose " + computerSelection +". " + result;
         return result;
 }
 
 function game() {
-    let input;
-
-    while (playerScore < 5 && computerScore < 5) {
-        input = prompt("Enter your choice").toString().toLowerCase();
-        round(input, getComputerChoice());
-        console.log("Player Score: " + playerScore + "/5. Computer Score: " + computerScore + "/5")
-    }
-
-    if(playerScore > computerScore) {
-        console.log("Player Wins the Game!")
-    } else if (computerScore > playerScore) {
-        console.log("Computer Wins the Game!")
-    }
+    round(playerChoice, getComputerChoice());
+    console.log("Player Score: " + playerScore + "/5. Computer Score: " + computerScore + "/5");
+    score.textContent = "Player Score: " + playerScore + "/5. Computer Score: " + computerScore + "/5";    
 }
 
-game();
+const body = document.querySelector("body");
+
+const buttonContainer = document.createElement("div");
+const rockButton = document.createElement("button");
+const paperButton = document.createElement("button");
+const scissorButton = document.createElement("button");
+rockButton.textContent = "Rock";
+paperButton.textContent = "Paper";
+scissorButton.textContent = "Scissors";
+rockButton.addEventListener('click', () => {
+    playerChoice = "rock";
+    game();
+  });
+paperButton.addEventListener('click', () => {
+    playerChoice = "paper";
+    game();
+});
+scissorButton.addEventListener('click', () => {
+    playerChoice = "scissors";
+    game();
+});
+buttonContainer.style.flex;
+buttonContainer.appendChild(rockButton);
+buttonContainer.appendChild(paperButton);
+buttonContainer.appendChild(scissorButton);
+
+body.appendChild(buttonContainer);
+
+const div = document.createElement("div");
+div.textContent = "test";
+const score = document.createElement("div");
+body.appendChild(div);
+body.appendChild(score);
